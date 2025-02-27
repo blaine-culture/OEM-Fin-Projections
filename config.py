@@ -3,26 +3,36 @@ from typing import Dict, Final
 
 @dataclass
 class CartConfig:
-    COMPONENTS_COST: Final[float] = 60000
+    COMPONENTS_COST: Final[float] = 76000
     LABOR_COST_PERCENTAGE: Final[float] = 0.25
-    UTILITY_CART_ASSEMBLY: Final[float] = 2533
-    TCU_COST: Final[float] = 4000
-    TCU_MARKUP: Final[float] = 1.15
-    UTILITY_AND_TCU_MARKUP: Final[float] = 0.70
+    
+    # Separated component costs and prices
+    UTILITY_CART_COST: Final[float] = 3000
+    UTILITY_CART_PRICE: Final[float] = 6000  # 50% margin
+    
+    TCU_COST: Final[float] = 5000
+    TCU_PRICE: Final[float] = 6000  # 16.7% margin
+    
+    AUTOFILLER_COST: Final[float] = 3000
+    AUTOFILLER_PRICE: Final[float] = 6000  # 50% margin
 
 @dataclass
 class ConsumablesConfig:
     INITIAL_VESSEL_COST: Final[float] = 325
     INITIAL_VESSEL_PRICE: Final[float] = 600
+    SAFETY_FACTOR: Final[float] = 1.0
+    
+    # Autofiller pack pricing (consumable)
     INITIAL_AUTOFILLER_PACK_COST: Final[float] = 29
     INITIAL_AUTOFILLER_PACK_PRICE: Final[float] = 80
+    
     INITIAL_INOCULATION_PACK_COST: Final[float] = 115
     INITIAL_INOCULATION_PACK_PRICE: Final[float] = 167
-    SAFETY_FACTOR: Final[float] = 1.0
 
 @dataclass
 class SoftwareConfig:
-    SUBSCRIPTION_PRICE: Final[float] = 20000
+    SUBSCRIPTION_PRICE: Final[float] = 10000  # Updated to $10,000
+    SOFTWARE_COST_PERCENTAGE: Final[float] = 0.10  # 90% margin
     OPC_PRICE: Final[float] = 0
     SERVICE_CONTRACT_PERCENTAGE: Final[float] = 0.10
     OPC_ADOPTION_RATE: Final[float] = 0.0
@@ -38,8 +48,10 @@ class OperationalConfig:
     CART_UTILIZATION_PERCENTAGE: Final[float] = 0.80
     TOTAL_MARKET_BIOREACTORS: Final[int] = 15205
     MARKET_GROWTH: Final[float] = 0.14
-    INSTALLATION_PRICE: Final[float] = 10000
-    INSTALLATION_HOURS: Final[int] = 40
+    
+    # Updated installation pricing
+    INSTALLATION_PRICE: Final[float] = 10000  # $10,000 selling price
+    INSTALLATION_COST: Final[float] = 5000  # $5,000 cost (50% margin)
     
     # Partner discount rates
     PARTNER_HARDWARE_DISCOUNT: Final[float] = 0.25  # 25% discount on hardware
@@ -48,10 +60,6 @@ class OperationalConfig:
 
 @dataclass
 class FinancialConfig:
-    RD_PERCENTAGE: Final[float] = 0.07
-    MARKETING_PERCENTAGE: Final[float] = 0.05
-    SALES_PERCENTAGE: Final[float] = 0.15
-    FACILITY_COST_PERCENTAGE: Final[float] = 0.20
     INFLATION_RATE: Final[float] = 0.025
     INITIAL_SELLING_PRICE: Final[float] = 230000
 
